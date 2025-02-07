@@ -19,7 +19,7 @@ services:
       - METRICS_STORAGE_TYPE=prometheus
       - MONITOR_MENU_ENABLED=true
     volumes:
-      - ./jaeger-config.yaml:/etc/jaeger/jaeger-config.yaml
+      - ./jaeger-config.yaml:/etc/jaeger/jaeger-config.yaml:Z
     command: ["--config-file=/etc/jaeger/jaeger-config.yaml"]
     networks:
       - mynetwork
