@@ -7,3 +7,9 @@ infinispan:
                         exporter-protocol: "OTLP"
                         service-name: "infinispan-server"
                         security: false
+        server:
+          endpoints:
+            socketBinding: "default"
+            securityRealm: "default"
+            endpoint:
+                metricsAuth: false
