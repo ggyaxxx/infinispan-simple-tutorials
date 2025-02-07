@@ -1,0 +1,117 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "infinispan-monitoring",
+    "title": "Infinispan Monitoring",
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Heap Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "base_memory_usedHeap_bytes",
+            "legendFormat": "Used Heap Memory"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "title": "CPU Load",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "base_cpu_processCpuLoad",
+            "legendFormat": "CPU Load"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 6,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "title": "Cache Insertions",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_stores",
+            "legendFormat": "Cache Stores"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 12,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "title": "Cache Read/Write Ratio",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_read_write_ratio",
+            "legendFormat": "Read/Write Ratio"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 18,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "title": "Cache Hits vs Misses",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_hits",
+            "legendFormat": "Cache Hits"
+          },
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_misses",
+            "legendFormat": "Cache Misses"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 24,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "title": "Latency (Avg Read/Write Time)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_average_read_time_nanos",
+            "legendFormat": "Read Time (ns)"
+          },
+          {
+            "expr": "vendor_cache_manager_default_cache_container_stats_average_write_time_nanos",
+            "legendFormat": "Write Time (ns)"
+          }
+        ],
+        "gridPos": {
+          "x": 0,
+          "y": 30,
+          "w": 12,
+          "h": 6
+        }
+      }
+    ],
+    "schemaVersion": 26,
+    "version": 1,
+    "refresh": "5s"
+  }
+}

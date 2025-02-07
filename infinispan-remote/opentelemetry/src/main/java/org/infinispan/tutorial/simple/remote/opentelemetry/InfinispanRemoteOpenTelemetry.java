@@ -26,7 +26,7 @@ public class InfinispanRemoteOpenTelemetry {
          client.administration()
                  .updateConfigurationAttribute(cache.getName(), "tracing.enabled", "true");
 
-         for (int i = 0; i < 300; i++) {
+         for (int i = 0; i < 30000; i++) {
             String key = "i" + i;
             String value = i + "";
             System.out.println("inserting cache: "+ key + value);
