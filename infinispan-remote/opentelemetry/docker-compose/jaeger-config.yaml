@@ -1,0 +1,28 @@
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+connectors:
+  spanmetrics: {}
+
+extensions:
+  jaeger_storage:
+    backends:
+      badger: {}
+    metric_backends:
+      prometheus:
+        endpoint: http://prometheus:9090
+
+  jaeger_query:
+    traces: badger
+    metrics_storage: prometheus
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [jaeger_storage_exporter, spanmetrics]
+    metrics/spanmetrics:
+      receivers: [spanmetrics]
+      exporters: [prometheus]

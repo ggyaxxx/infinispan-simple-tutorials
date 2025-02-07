@@ -3,17 +3,29 @@ version: '3'
 networks:
   mynetwork:
     driver: bridge
+
 services:
   jaeger:
     image: jaegertracing/all-in-one:1.57
     ports:
       - "16686:16686"
       - "4318:4318"
+      - "14269:14269"
+      - "8889:8889"
     container_name: jaeger
     environment:
       - LOG_LEVEL=debug
+      - SPAN_STORAGE_TYPE=badger
+      - METRICS_STORAGE_TYPE=prometheus
+      - MONITOR_MENU_ENABLED=true
+    volumes:
+      - ./jaeger-config.yaml:/etc/jaeger/jaeger-config.yaml
+    command: ["--config-file=/etc/jaeger/jaeger-config.yaml"]
     networks:
       - mynetwork
+
+
+
   infinispan-tracing:
     image: quay.io/infinispan/server:15.1
     ports:
@@ -23,7 +35,34 @@ services:
       USER: admin
       PASS: password
     volumes:
-      - ./infinispan-tracing-configuration-server.yaml:/user-config/infinispan-tracing-configuration-server.yaml
+      - ./infinispan-tracing-configuration-server.yaml:/user-config/infinispan-tracing-configuration-server.yaml:Z
     command: -c infinispan.xml -c /user-config/infinispan-tracing-configuration-server.yaml
     networks:
       - mynetwork
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:Z
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - mynetwork
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - mynetwork
+
+volumes:
+  grafana-data:

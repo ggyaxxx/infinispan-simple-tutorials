@@ -27,6 +27,8 @@ public class InfinispanConfiguration {
          b.remoteCache(Data.BASQUE_NAMES_CACHE)
                  .configurationURI(cacheConfigUri);
 
+         b.security().authentication().username("admin").password("admin");
+
          b.remoteCache(Data.BASQUE_NAMES_CACHE).marshaller(ProtoStreamMarshaller.class);
 
          // Add marshaller in the client, the class is generated from the interface in compile time
