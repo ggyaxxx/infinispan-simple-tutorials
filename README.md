@@ -1,3 +1,16 @@
+# To keep up with upstream
+
+git pull upstream main
+
+where: 
+$ git remote -v
+origin  git@github.com:ggyaxxx/infinispan-simple-tutorials.git (fetch)
+origin  git@github.com:ggyaxxx/infinispan-simple-tutorials.git (push)
+upstream        git@github.com:infinispan/infinispan-simple-tutorials.git (fetch)
+upstream        git@github.com:infinispan/infinispan-simple-tutorials.git (push)
+
+
+
 # Infinispan Simple Tutorials
 
 This is a collection of simple tutorials that explain how to use certain
