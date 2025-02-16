@@ -1,6 +1,9 @@
 infinispan:
         cacheContainer:
                 statistics: true
+                metrics:
+                  gauges: "true"
+                  histograms: "true"
                 tracing:
                         collector-endpoint: "http://jaeger:4318"
                         enabled: true
